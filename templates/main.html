@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Dictionaries</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+</head>
+
+<body>
+<p>
+<form class="form-inline">
+  <div class="form-group">
+    <label class="sr-only" for="search">Email address</label>
+    <input name="query" class="form-control" id="search" placeholder="Enter search word">
+  </div>
+  <button type="submit" class="btn btn-default">Search</button>
+</form>
+{% autoescape false %}
+<div class="col-lg-4">
+    <ul class="list-group>">
+        {% for related in macmillan_related %}
+            <li class="list-group-item">
+                <a href="{{ related }}">{{ related}}</a>
+            </li>
+        {% endfor %}
+
+
+    </ul>
+
+    {{ macmillan }}
+
+</div>
+<div class="col-lg-4">bbb</div>
+<div class="col-lg-4">ccc</div>
+
+{% endautoescape %}
+</body>
+</html>
