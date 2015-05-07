@@ -1,0 +1,1 @@
+web: gunicorn dictionaries:app --log-file=-
