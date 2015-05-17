@@ -5,6 +5,7 @@ from lxml import html, etree
 
 
 app = Flask(__name__)
+app.debug = True
 
 DICTIONARIES_URLS = {
     'macmillan': "http://www.macmillandictionary.com/dictionary/british/%s",
@@ -49,4 +50,4 @@ def hello_world():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
