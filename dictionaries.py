@@ -20,22 +20,24 @@ def hello_world():
         tree = html.fromstring(page.text)
 
         macmillan_main = tree.xpath(r'//ol[@class="senses"]')
-
-        macmillan_main = etree.tostring(macmillan_main[0], pretty_print=True).replace("\n", "")
-
-        macmillan_related = tree.xpath(r'//div[@class="entrylist"]/ul/li/a/@href')
+        macmillan_related = None
+        if macmillan_main:
+            macmillan_main = etree.tostring(macmillan_main[0], pretty_print=True).replace("\n", "")
+            macmillan_related = tree.xpath(r'//div[@class="entrylist"]/ul/li/a/@href')
 
         dictionary_page = get(DICTIONARIES_URLS['dictionary'] % request.values["query"])
         dict_tree = html.fromstring(dictionary_page.text)
 
         dict_main = dict_tree.xpath(r'//div[@class="def-list"]')
-        dict_main = etree.tostring(dict_main[0], pretty_print=True).replace("\n", "")
+        if dict_main:
+            dict_main = etree.tostring(dict_main[0], pretty_print=True).replace("\n", "")
 
         free_page = get(DICTIONARIES_URLS['thefree'] % request.values["query"])
         free_tree = html.fromstring(free_page.text)
 
         free_main = free_tree.xpath(r'//div[@class="pseg"]')
-        free_main = etree.tostring(free_main[0], pretty_print=True).replace("\n", "")
+        if free_main:
+            free_main = etree.tostring(free_main[0], pretty_print=True).replace("\n", "")
 
         return render_template('main.html',
                                macmillan=macmillan_main,

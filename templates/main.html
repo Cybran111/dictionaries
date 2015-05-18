@@ -19,11 +19,15 @@
 {% autoescape false %}
 <div class="col-lg-4">
     <ul class="list-group>">
+        {% if macmillan_related %}
+
         {% for related in macmillan_related %}
             <li class="list-group-item">
                 <a href="{{ related }}">{{ related}}</a>
             </li>
         {% endfor %}
+
+        {% endif %}
 
 
     </ul>
